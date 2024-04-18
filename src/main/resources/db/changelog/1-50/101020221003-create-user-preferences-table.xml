@@ -1,0 +1,41 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="101020221003-1" author="Sudhagar">
+        <createTable tableName="user_preferences">
+            <column name="user_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="interests" type="JSONB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="default_billing_address_id" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="default_shipping_address_id" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="addresses" type="JSONB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_theme" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="user_preferences" baseColumnNames="user_id"
+                                 constraintName="fKey_User_userId"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

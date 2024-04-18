@@ -1,0 +1,46 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="081020220013-1" author="Sudhagar">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="external_id" type="VARCHAR(50)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="guest_to_regular_at" type="TIMESTAMP" >
+                <constraints nullable="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(25)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="is_phone_number_verified" type="bool">
+                <constraints nullable="true"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="is_email_verified" type="bool">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="TIMESTAMP"/>
+        </createTable>
+        <addUniqueConstraint tableName="users" columnNames="external_id"/>
+    </changeSet>
+</databaseChangeLog>
